@@ -1,5 +1,7 @@
 # Context Optimizer
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-3b3431?style=flat-square)](LICENSE)
+
 Cut your AI agent's session cost by 30–60% in one pass. Audits markdown-based projects and restructures them so models consume fewer tokens and fill the context window slower.
 
 Works with any AI coding agent or assistant whose behavior is shaped by always-loaded markdown: **Claude Code, Cursor, Windsurf, Aider, Continue, custom agents, plain ChatGPT / Claude system prompts, knowledge bases, documentation sites.**
@@ -29,27 +31,34 @@ Never deletes content. Reorganizes, compresses, moves.
 
 This is a Markdown-defined skill. No code, no dependencies.
 
-### Claude Code
+### With an AI agent
 
-Drop the folder into your skills directory:
+Paste this into Claude Code, Codex, Hermes or any agent that can run commands on your computer:
 
+```text
+Install the context-optimizer skill from https://github.com/bgtvdm/context-optimizer.
+1. Run: npx skills add bgtvdm/context-optimizer -g
+   No Node? Clone the repo into my agent's skills directory instead
+   (~/.claude/skills/context-optimizer for Claude Code,
+   ~/.agents/skills/context-optimizer for Codex).
+2. Check that SKILL.md sits directly in the installed folder.
+3. Tell me to start a new session so the skill loads.
+To update later: npx skills update context-optimizer, or git pull in that folder.
 ```
-~/.claude/skills/context-optimizer/SKILL.md
+
+### By hand
+
+```bash
+npx skills add bgtvdm/context-optimizer -g
 ```
 
-Or per-project:
+The [cross-agent installer](https://github.com/vercel-labs/skills) puts the skill where your agent looks for it (Claude Code, Cursor, Windsurf, Codex, …). Drop `-g` to install for the current project only. Without Node:
 
+```bash
+git clone https://github.com/bgtvdm/context-optimizer ~/.claude/skills/context-optimizer
 ```
-<your-project>/.claude/skills/context-optimizer/SKILL.md
-```
 
-### Cursor / Windsurf / other agents
-
-Copy `SKILL.md` into your rules / instructions folder, or paste its content into your system prompt / project rules. The workflow is tool-agnostic — only the install path changes.
-
-### Manual / plain LLM use
-
-Paste `SKILL.md` into the system prompt of any capable model (Claude, GPT-4-class). Then point it at your project.
+No agent at all? Paste `SKILL.md` into the system prompt of any capable model, then point it at your project.
 
 ## Use
 
@@ -103,10 +112,10 @@ You approve, the skill applies, then re-audits and shows the delta.
 - Descriptive filenames — the AI uses them to judge relevance.
 - The skill itself is kept lean (under 200 lines).
 
-## License
-
-MIT — see [LICENSE](LICENSE).
-
 ## Contributing
 
 PRs welcome for: better tier heuristics, support for new agent file conventions, sharper compression patterns. Keep `SKILL.md` lean; new techniques should earn their lines.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
